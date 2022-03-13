@@ -90,12 +90,36 @@ async function addEmployeePrompts(employeesArr, rolesArr) {
     {
       type: 'input',
       name: 'firstName',
-      message: `Enter the new employee's first name.`
+      message: `Enter the new employee's first name.`,
+      validate: firstNameInput => {
+        if (firstNameInput) {
+          return true;
+        } else {
+          console.log(`
+------------------------------------------
+  Enter a first name
+------------------------------------------
+          `);
+          return false;
+        }
+      }
     },
     {
       type: 'input',
       name: 'lastName',
-      message: `Enter the new employee's last name.`
+      message: `Enter the new employee's last name.`,
+      validate: lastNameInput => {
+        if (lastNameInput) {
+          return true;
+        } else {
+          console.log(`
+------------------------------------------
+  Enter a last name
+------------------------------------------
+          `);
+          return false;
+        }
+      }
     },
     {
       type: 'list',
@@ -117,12 +141,43 @@ async function addRolePrompts(departmentsArr) {
     {
       type: 'input',
       message: `Enter the new role's title.`,
-      name: 'title'
+      name: 'title',
+      validate: titleInput => {
+        if (titleInput) {
+          return true;
+        } else {
+          console.log(`
+------------------------------------------
+  Enter a title
+------------------------------------------
+          `);
+          return false;
+        }
+      }
     },
     {
       type: 'input',
       message: `Enter the new role's salary.`,
-      name: 'salary'
+      name: 'salary',
+      validate: nameInput => {
+        if (!nameInput) {
+          console.log(`
+------------------------------------------
+  Enter a salary
+------------------------------------------
+          `);
+          return false;
+        } else if (isNaN(Number(nameInput))) {
+          console.log(`
+------------------------------------------
+  Salary must be a number
+------------------------------------------
+          `);
+          return false;
+        } else {
+          return true;
+        }
+      }
     },
     {
       type: 'list',
@@ -138,7 +193,19 @@ async function addDepartmentPrompts() {
     {
       type: 'input',
       name: 'name',
-      message: `Enter the new department's name.`
+      message: `Enter the new department's name.`,
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log(`
+------------------------------------------
+  Enter a name
+------------------------------------------
+          `);
+          return false;
+        }
+      }
     }
   ]);
 }
