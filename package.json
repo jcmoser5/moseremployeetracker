@@ -1,6 +1,5 @@
 {
   "name": "moseremployeetracker",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,5 +16,12 @@
     "console.table": "^0.10.0",
     "inquirer": "^8.2.1",
     "mysql2": "^2.3.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/jcmoser5/moseremployeetracker/issues"
+  },
+  "homepage": "https://github.com/jcmoser5/moseremployeetracker#readme",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "description": ""
 }
