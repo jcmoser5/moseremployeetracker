@@ -1,4 +1,9 @@
-const startPrompts = require('./utils/prompts');
+const { startPrompts } = require('./utils/prompts');
 
-startPrompts()
-  .then(console.log('Done.'));
+
+console.log(`
+---------------------------------
+ Employee Tracker
+---------------------------------
+`);
+startPrompts(); 
