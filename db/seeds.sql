@@ -1,11 +1,11 @@
-INSERT INTO departments (name)
+INSERT INTO department (name)
 VALUES
   ('Sales'),
   ('Engineering'),
   ('Finance'),
   ('Legal');
 
-INSERT INTO roles (title, salary, department_id)
+INSERT INTO role (title, salary, department_id)
 VALUES
   ('Sales Lead', 100000, 1),
   ('Sales Person', 80000, 1),
@@ -15,15 +15,15 @@ VALUES
   ('Legal Team Lead', 250000, 4),
   ('Lawyer', 190000, 4);
 
-INSERT INTO employees (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
-  ('Jack', 'Nicholson', 1, null),
-  ('Denzel', 'Washington', 2, 1),
-  ('Meryl', 'Streep', 3, null),
-  ('Tom', 'Hanks', 4, 3),
-  ('Cate', 'Blanchett', 5, null),
-  ('Audrey', 'Hepburn', 6, null),
-  ('Tim', 'Allen', 7, 6),
-  ('Bruce', 'Lee', 4, 3),
-  ('Morgan', 'Freeman', 7, 6),
-  ('Keanu', 'Reeves', 2, 1);
+  ('Malia', 'Brown', 2, 1),
+  ('Sarah', 'Lourd', 2, 1),
+  ('Tom', 'Allen', 3, null),
+  ('Sam', 'Kash', 4, 3),
+  ('John', 'Doe', 5, null),
+  ('Mike', 'Chan', 6, null),
+  ('Ashley', 'Rodriguez', 7, 6),
+  ('Leopold', 'Stotch', 4, 3),
+  ('Gregory', 'Swanson', 7, 6),
+  ('Brian', 'Baxter', 1, null);
