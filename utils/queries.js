@@ -71,6 +71,42 @@ async function viewBudgetByDepartment() {
     console.table(query[0]);
 }
 
+async function getEmployeeNamesAndIds() {
+  const sql = `SELECT CONCAT(first_name, ' ', last_name) AS name, id AS value FROM employees`;
+  const params = [];
+  const query = await connection.promise().query(sql, params);
+  return query[0];
+};
+
+async function updateEmployeeManager({ managerId, employeeId }) {
+  const sql = `UPDATE employees SET manager_id = ? WHERE id = ?`;
+  const params = [managerId, employeeId];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+  Employee's manager has been updated   
+------------------------------------------
+  `);
+}
+
+async function getRoleTitlesAndIds() {
+  const sql = `SELECT title AS name, id AS value FROM roles`;
+  const params = [];
+  const query = await connection.promise().query(sql, params);
+  return query[0];
+}
+
+async function updateEmployeeRole({ roleId, employeeId }) {
+  const sql = `UPDATE employees SET role_id = ? WHERE id = ?`;
+  const params = [roleId, employeeId];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+  Employee's role has been updated   
+------------------------------------------
+    `)
+}
+
 module.exports = {
   connection,
   viewAllEmployees,
@@ -78,5 +114,9 @@ module.exports = {
   viewAllEmployeesByManager,
   viewAllRoles,
   viewAllDepartments,
-  viewBudgetByDepartment 
+  viewBudgetByDepartment,
+  getEmployeeNamesAndIds,
+  updateEmployeeManager,
+  getRoleTitlesAndIds,
+  updateEmployeeRole
 } 

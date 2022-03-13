@@ -2,8 +2,8 @@ const { startPrompts } = require('./utils/prompts');
 
 
 console.log(`
----------------------------------
- Employee Tracker
----------------------------------
+------------------------------------------
+           Employee Tracker   
+------------------------------------------
 `);
 startPrompts(); 
