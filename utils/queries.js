@@ -1,5 +1,5 @@
 // show all
-const mysql = require('mysql2');
+const cTable = require('console.table');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -78,6 +78,20 @@ async function getEmployeeNamesAndIds() {
   return query[0];
 };
 
+async function getRoleTitlesAndIds() {
+  const sql = `SELECT title AS name, id AS value FROM roles`;
+  const params = [];
+  const query = await connection.promise().query(sql, params);
+  return query[0];
+}
+
+async function getDepartmentNamesAndIds() {
+  const sql = `SELECT name, id AS value FROM departments`;
+  const params = [];
+  const query = await connection.promise().query(sql, params);
+  return query[0];
+}
+
 async function updateEmployeeManager({ managerId, employeeId }) {
   const sql = `UPDATE employees SET manager_id = ? WHERE id = ?`;
   const params = [managerId, employeeId];
@@ -89,12 +103,6 @@ async function updateEmployeeManager({ managerId, employeeId }) {
   `);
 }
 
-async function getRoleTitlesAndIds() {
-  const sql = `SELECT title AS name, id AS value FROM roles`;
-  const params = [];
-  const query = await connection.promise().query(sql, params);
-  return query[0];
-}
 
 async function updateEmployeeRole({ roleId, employeeId }) {
   const sql = `UPDATE employees SET role_id = ? WHERE id = ?`;
@@ -102,9 +110,79 @@ async function updateEmployeeRole({ roleId, employeeId }) {
   await connection.promise().execute(sql, params);
   console.log(`
 ------------------------------------------
-  Employee's role has been updated   
+Employee's role has been updated
 ------------------------------------------
-    `)
+  `);
+}
+
+async function addEmployee({ firstName, lastName, roleId, managerId}) {
+  const sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)
+    VALUES (?,?,?,?)`;
+  const params = [firstName, lastName, roleId, managerId];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+      New employee added
+------------------------------------------
+`);
+}
+
+async function addRole({ title, salary, departmentId }) {
+  const sql = `INSERT INTO roles (title, salary, department_id)
+    VALUES (?,?,?)`;
+  const params = [title, salary, departmentId];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+  New role added
+------------------------------------------
+  `);
+}
+
+async function addDepartment({ name }) {
+  const sql = `INSERT INTO departments (name)
+    VALUES (?)`;
+  const params = [name];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+  New department added
+------------------------------------------
+  `);
+}
+
+
+async function removeEmployee({ employeeId }) {
+  const sql = `DELETE FROM employees WHERE id = ?`;
+  const params = [employeeId];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+  Employee deleted
+------------------------------------------
+  `);
+}
+
+async function removeRole({ roleId }) {
+  const sql = `DELETE FROM roles WHERE id = ?`;
+  const params = [roleId];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+  Role deleted
+------------------------------------------
+  `);
+}
+
+async function removeDepartment({ departmentId }) {
+  const sql = `DELETE FROM departments WHERE id = ?`;
+  const params = [departmentId];
+  await connection.promise().execute(sql, params);
+  console.log(`
+------------------------------------------
+  Department deleted
+------------------------------------------
+  `);
 }
 
 module.exports = {
@@ -118,5 +196,12 @@ module.exports = {
   getEmployeeNamesAndIds,
   updateEmployeeManager,
   getRoleTitlesAndIds,
-  updateEmployeeRole
+  updateEmployeeRole,
+  addEmployee,
+  getDepartmentNamesAndIds,
+  addRole,
+  addDepartment,
+  removeEmployee,
+  removeRole,
+  removeDepartment
 } 
