@@ -27,7 +27,7 @@ Then respond to the prompts that appear in the command line.
 Here is a [demo video](https://drive.google.com/file/d/12981SC7zOFZA9a4pTtUou4Ujyv9Z1BSj/view)
 
 ## Screenshot
-![main menu](https://github.com/jcmoser5/employeetracker/blob/main/assets/menu.png)
+![main menu](https://github.com/jcmoser5/moseremployeetracker/blob/main/assets/menu.PNG)
 
 ## License
 Employee Tracker is licensed under the MIT license. Utilizes [Inquirer](https://www.npmjs.com/package/inquirer) and [mySQL2](https://www.npmjs.com/package/mysql2).
